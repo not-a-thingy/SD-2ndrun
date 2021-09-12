@@ -12,7 +12,7 @@ if(isset($_POST['update']))
 {
 $pimage=$_FILES["img2"]["name"];
 $id=intval($_GET['imgid']);
-move_uploaded_file($_FILES["img2"]["tmp_name"],"img/productimages/".$_FILES["img2"]["name"]);
+move_uploaded_file($_FILES["img2"]["tmp_name"],"img/productimage/".$_FILES["img2"]["name"]);
 $sql="UPDATE tblproduct set Pimage2=:pimage where id=:id";
 $query = $dbh->prepare($sql);
 $query->bindParam(':pimage',$pimage,PDO::PARAM_STR);
@@ -118,7 +118,7 @@ foreach($results as $result)
 {	?>
 
 <div class="col-sm-8">
-<img src="img/productimages/<?php echo htmlentities($result->Pimage2);?>" width="300" height="200" style="border:solid 1px #000">
+<img src="img/productimage/<?php echo htmlentities($result->Pimage2);?>" width="300" height="200" style="border:solid 1px #000">
 </div>
 <?php }}?>
 </div>

@@ -12,7 +12,7 @@ if(isset($_POST['update']))
 {
 $pimage=$_FILES["img3"]["name"];
 $id=intval($_GET['imgid']);
-move_uploaded_file($_FILES["img3"]["tmp_name"],"img/productimages/".$_FILES["img3"]["name"]);
+move_uploaded_file($_FILES["img3"]["tmp_name"],"img/productimage/".$_FILES["img3"]["name"]);
 $sql="update tblvehicles set Pimage3=:pimage where id=:id";
 $query = $dbh->prepare($sql);
 $query->bindParam(':pimage',$pimage,PDO::PARAM_STR);
@@ -37,7 +37,7 @@ $msg="Image updated successfully";
 	<meta name="author" content="">
 	<meta name="theme-color" content="#3e454c">
 
-	<title>Car Rental Portal | Admin Update Image 3</title>
+	<title>Mask Kau Portal | Admin Update Image 3</title>
 
 	<!-- Font awesome -->
 	<link rel="stylesheet" href="css/font-awesome.min.css">
@@ -87,12 +87,12 @@ $msg="Image updated successfully";
 				<div class="row">
 					<div class="col-md-12">
 
-						<h2 class="page-title">Vehicle Image 3 </h2>
+						<h2 class="page-title">Product Image 3 </h2>
 
 						<div class="row">
 							<div class="col-md-10">
 								<div class="panel panel-default">
-									<div class="panel-heading">Vehicle Image 3 Details</div>
+									<div class="panel-heading">Product Image 3 Details</div>
 									<div class="panel-body">
 										<form method="post" class="form-horizontal" enctype="multipart/form-data">
 
@@ -118,7 +118,7 @@ foreach($results as $result)
 {	?>
 
 <div class="col-sm-8">
-<img src="img/productimages/<?php echo htmlentities($result->Pimage3);?>" width="300" height="200" style="border:solid 1px #000">
+<img src="img/productimage/<?php echo htmlentities($result->Pimage3);?>" width="300" height="200" style="border:solid 1px #000">
 </div>
 <?php }}?>
 </div>

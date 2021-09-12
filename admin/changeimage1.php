@@ -12,7 +12,7 @@ if(isset($_POST['update']))
 {
 $pimage1=$_FILES["img1"]["name"];
 $id=intval($_GET['imgid']);
-move_uploaded_file($_FILES["img1"]["tmp_name"],"img/productimages/".$_FILES["img1"]["name"]);
+move_uploaded_file($_FILES["img1"]["tmp_name"],"img/productimage/".$_FILES["img1"]["name"]);
 $sql="UPDATE tblproduct set Pimage1=:pimage1 where id=:id";
 $query = $dbh->prepare($sql);
 $query->bindParam(':pimage1',$pimage1,PDO::PARAM_STR);
@@ -37,7 +37,7 @@ $msg="Image updated successfully";
 	<meta name="author" content="">
 	<meta name="theme-color" content="#3e454c">
 
-	<title>Car Rental Portal | Admin Update Image 1</title>
+	<title>Mask Kau Portal | Admin Update Image 1</title>
 
 	<!-- Font awesome -->
 	<link rel="stylesheet" href="css/font-awesome.min.css">
@@ -87,12 +87,12 @@ $msg="Image updated successfully";
 				<div class="row">
 					<div class="col-md-12">
 
-						<h2 class="page-title">Vehicle Image 1 </h2>
+						<h2 class="page-title">Product Image 1 </h2>
 
 						<div class="row">
 							<div class="col-md-10">
 								<div class="panel panel-default">
-									<div class="panel-heading">Vehicle Image 1 Details</div>
+									<div class="panel-heading">Product Image 1 Details</div>
 									<div class="panel-body">
 										<form method="post" class="form-horizontal" enctype="multipart/form-data">
 
@@ -106,7 +106,7 @@ $msg="Image updated successfully";
 												<label class="col-sm-4 control-label">Current Image1</label>
 <?php
 $id=intval($_GET['imgid']);
-$sql ="SELECT Vimage1 from tblvehicles where tblvehicles.id=:id";
+$sql ="SELECT Pimage1 from tblproduct where tblproduct.id=:id";
 $query = $dbh -> prepare($sql);
 $query-> bindParam(':id', $id, PDO::PARAM_STR);
 $query->execute();
@@ -118,7 +118,7 @@ foreach($results as $result)
 {	?>
 
 <div class="col-sm-8">
-<img src="img/vehicleimages/<?php echo htmlentities($result->Vimage1);?>" width="300" height="200" style="border:solid 1px #000">
+<img src="img/productimage/<?php echo htmlentities($result->Pimage1);?>" width="300" height="200" style="border:solid 1px #000">
 </div>
 <?php }}?>
 </div>
