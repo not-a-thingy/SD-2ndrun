@@ -3,7 +3,7 @@ session_start();
 error_reporting(0);
 include('includes/config.php');
 if(strlen($_SESSION['alogin'])==0)
-	{	
+	{
 header('location:index.php');
 }
 else{
@@ -34,8 +34,8 @@ $msg="Testimonial Successfully Inacrive";
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<meta name="theme-color" content="#3e454c">
-	
-	<title>Car Rental Portal |Admin Manage Queries   </title>
+
+	<title>Mask Kau Portal |Admin Manage Queries   </title>
 
 	<!-- Font awesome -->
 	<link rel="stylesheet" href="css/font-awesome.min.css">
@@ -85,13 +85,13 @@ $msg="Testimonial Successfully Inacrive";
 				<div class="row">
 					<div class="col-md-12">
 
-						<h2 class="page-title">Manage Contact Us Queries</h2>
+						<h2 class="page-title">Manage Feedback</h2>
 
 						<!-- Zero Configuration Table -->
 						<div class="panel panel-default">
 							<div class="panel-heading">User queries</div>
 							<div class="panel-body">
-							<?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } 
+							<?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php }
 				else if($msg){?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
 								<table id="zctb" class="display table table-striped table-bordered table-hover" cellspacing="0" width="100%">
 									<thead>
@@ -127,7 +127,7 @@ $cnt=1;
 if($query->rowCount() > 0)
 {
 foreach($results as $result)
-{				?>	
+{				?>
 										<tr>
 											<td><?php echo htmlentities($cnt);?></td>
 											<td><?php echo htmlentities($result->name);?></td>
@@ -145,16 +145,16 @@ foreach($results as $result)
 <?php } ?>
 										</tr>
 										<?php $cnt=$cnt+1; }} ?>
-										
+
 									</tbody>
 								</table>
 
-						
+
 
 							</div>
 						</div>
 
-					
+
 
 					</div>
 				</div>
