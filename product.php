@@ -85,7 +85,7 @@ if($query->rowCount() > 0)
 foreach($results as $result)
 {  ?>
         <div class="product-listing-m gray-bg">
-          <div class="product-listing-img"><img src="admin/img/productimages/<?php echo htmlentities($result->Pimage1);?>" class="img-responsive" alt="Image" /> </a>
+          <div class="product-listing-img"><img src="admin/img/productimage/<?php echo htmlentities($result->Pimage1);?>" class="img-responsive" alt="Image" /> </a>
           </div>
           <div class="product-listing-content">
             <h5><a href="product-details.php?pid=<?php echo htmlentities($result->id);?>"><?php echo htmlentities($result->ProductName);?></a></h5>

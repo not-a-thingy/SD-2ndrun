@@ -70,7 +70,7 @@ $totalvehicle=$query1->rowCount();
 													<div class="stat-panel-title text-uppercase">Listed Products</div>
 												</div>
 											</div>
-											<a href="manage-vehicles.php" class="block-anchor panel-footer text-center">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
+											<a href="manage-product.php" class="block-anchor panel-footer text-center">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
 										</div>
 									</div>
 									<div class="col-md-3">
@@ -89,7 +89,7 @@ $bookings=$query2->rowCount();
 													<div class="stat-panel-title text-uppercase">Total Order</div>
 												</div>
 											</div>
-											<a href="manage-bookings.php" class="block-anchor panel-footer text-center">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
+											<a href="manage-order.php" class="block-anchor panel-footer text-center">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
 										</div>
 									</div>
 

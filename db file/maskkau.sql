@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Sep 12, 2021 at 04:34 PM
+-- Generation Time: Sep 13, 2021 at 03:19 AM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `Password` varchar(100) NOT NULL,
   `updationDate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `admin`
@@ -76,14 +76,14 @@ CREATE TABLE IF NOT EXISTS `tblorder` (
   `status` int(11) DEFAULT NULL,
   `PostingDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tblorder`
 --
 
 INSERT INTO `tblorder` (`id`, `userEmail`, `ProductId`, `Quantity`, `status`, `PostingDate`) VALUES
-(1, 'aaa', 1, 4, 0, '2021-09-12 15:58:46');
+(1, 'aaa', 1, 3, 0, '2021-09-13 03:18:47');
 
 -- --------------------------------------------------------
 
@@ -104,14 +104,14 @@ CREATE TABLE IF NOT EXISTS `tblproduct` (
   `RegDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `UpdationDate` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tblproduct`
 --
 
 INSERT INTO `tblproduct` (`id`, `ProductName`, `ProductsOverview`, `Price`, `Stock`, `Pimage1`, `Pimage2`, `Pimage3`, `RegDate`, `UpdationDate`) VALUES
-(1, 'Football Edition Mask', 'football edition', 5, 50, 'FC (1).jpeg', 'FC (2).jpeg', 'FC (3).jpeg', '2021-09-12 15:12:23', NULL);
+(1, 'FC mask', 'football club version', 5, 50, 'FC (1).jpeg', 'FC (2).jpeg', 'FC (3).jpeg', '2021-09-13 03:13:26', NULL);
 
 -- --------------------------------------------------------
 
@@ -130,7 +130,7 @@ CREATE TABLE IF NOT EXISTS `tblusers` (
   `RegDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `UpdationDate` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tblusers`

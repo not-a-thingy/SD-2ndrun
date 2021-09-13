@@ -8,6 +8,17 @@ header('location:index.php');
 }
 else{
 
+	if(isset($_REQUEST['del']))
+		{
+	$delid=intval($_GET['id']);
+	$sql = "DELETE from tblproduct WHERE  id=:delid";
+	$query = $dbh->prepare($sql);
+	$query -> bindParam(':delid',$delid, PDO::PARAM_STR);
+	$query -> execute();
+	echo "<script>alert('Product Deleted');</script>";
+	echo "<script type='text/javascript'> document.location = 'manage-product.php'; </script>";
+	}
+
 if(isset($_POST['submit']))
   {
 $productname=$_POST['productname'];
@@ -119,18 +130,18 @@ foreach($results as $result)
 <div class="form-group">
 <label class="col-sm-2 control-label">Product Overview<span style="color:red">*</span></label>
 <div class="col-sm-10">
-<textarea class="form-control" name="overview" rows="3" required></textarea>
+<textarea class="form-control" name="overview" rows="3"></textarea>
 </div>
 </div>
 
 <div class="form-group">
 <label class="col-sm-2 control-label">Price Per Unit<span style="color:red">*</span></label>
 <div class="col-sm-4">
-<input type="text" name="price" class="form-control" required>
+<input type="text" name="price" class="form-control">
 </div>
 <label class="col-sm-2 control-label">Stock<span style="color:red">*</span></label>
 <div class="col-sm-4">
-<input type="text" name="stock" class="form-control" required>
+<input type="text" name="stock" class="form-control">
 </div>
 </div>
 <div class="hr-dashed"></div>
@@ -179,6 +190,7 @@ Image 3<img src="img/productimage/<?php echo htmlentities($result->Pimage3);?>" 
 												<div class="col-sm-8 col-sm-offset-2" >
 
 													<button class="btn btn-primary" name="submit" type="submit" style="margin-top:4%">Save changes</button>
+													<button class="btn btn-primary" name="del" type="del" style="margin-top:4%">Delete Product</button>
 												</div>
 											</div>
 

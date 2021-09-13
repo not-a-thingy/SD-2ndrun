@@ -124,7 +124,7 @@ $msg="Order Successfully Confirmed";
 										<th>#</th>
 										<th>Name</th>
 											<th>Product Name</th>
-											<th>Quanity</th>
+											<th>Quantity</th>
 											<th>Status</th>
 											<th>Posting date</th>
 											<th>Action</th>
@@ -132,7 +132,7 @@ $msg="Order Successfully Confirmed";
 									</tfoot>
 									<tbody>
 
-									<?php $sql = "SELECT tblusers.FullName,tblproduct.ProductName,tblorder.Quanity,tblorder.ProductId as vid,tblorder.status,tblorder.PostingDate,tblorder.id  from tblorder join tblproduct on tblproduct.id=tblorder.ProductId join tblusers on tblusers.EmailId=tblorder.userEmail   ";
+									<?php $sql = "SELECT tblorder.userEmail,tblproduct.ProductName,tblorder.Quantity,tblorder.ProductId as pid,tblorder.status,tblorder.PostingDate,tblorder.id  from tblorder join tblproduct on tblproduct.id=tblorder.ProductId ";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -143,14 +143,14 @@ foreach($results as $result)
 {				?>
 										<tr>
 											<td><?php echo htmlentities($cnt);?></td>
-											<td><?php echo htmlentities($result->FullName);?></td>
-											<td><?php echo htmlentities($result->ProductName);?></td>
+											<td><?php echo htmlentities($result->userEmail);?></td>
+											<td><a href="edit-product.php?id=<?php echo htmlentities($result->pid);?>"><?php echo htmlentities($result->ProductName);?></td>
 											<td><?php echo htmlentities($result->Quantity);?></td>
 											<td><?php
-if($result->Status==0)
+if($result->status==0)
 {
 echo htmlentities('Not Confirmed yet');
-} else if ($result->Status==1) {
+} else if ($result->status==1) {
 echo htmlentities('Confirmed');
 }
  else{

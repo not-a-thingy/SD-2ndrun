@@ -8,17 +8,6 @@ header('location:index.php');
 }
 else{
 
-if(isset($_REQUEST['del']))
-	{
-$delid=intval($_GET['del']);
-$sql = "DELETE from tblproduct SET id=:status WHERE  id=:delid";
-$query = $dbh->prepare($sql);
-$query -> bindParam(':delid',$delid, PDO::PARAM_STR);
-$query -> execute();
-$msg="Product record deleted successfully";
-}
-
-
  ?>
 
 <!doctype html>
@@ -126,8 +115,7 @@ foreach($results as $result)
 											<td><?php echo htmlentities($result->ProductName);?></td>
 											<td><?php echo htmlentities($result->Price);?></td>
 											<td><?php echo htmlentities($result->Stock);?></td>
-		<td><a href="edit-vehicle.php?id=<?php echo $result->id;?>"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;
-<a href="manage-vehicles.php?del=<?php echo $result->id;?>" onclick="return confirm('Do you want to delete');"><i class="fa fa-close"></i></a></td>
+		<td><a href="edit-product.php?id=<?php echo $result->id;?>"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;</td>
 										</tr>
 										<?php $cnt=$cnt+1; }} ?>
 

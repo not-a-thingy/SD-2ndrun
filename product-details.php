@@ -7,8 +7,8 @@ if(isset($_POST['submit']))
 $useremail=$_SESSION['login'];
 $status=0;
 $pid=$_GET['pid'];
-$quantity=$_POST['quantity']
-$sql="INSERT INTO  tblorder(userEmail,ProductId,Quantity,status) VALUES(:useremail,:pid,:quantity,:status)";
+$quantity=$_POST['quantity'];
+$sql="INSERT INTO tblorder(userEmail,ProductId,Quantity,status) VALUES(:useremail,:pid,:quantity,:status)";
 $query = $dbh->prepare($sql);
 $query->bindParam(':useremail',$useremail,PDO::PARAM_STR);
 $query->bindParam(':pid',$pid,PDO::PARAM_STR);
@@ -19,7 +19,6 @@ $lastInsertId = $dbh->lastInsertId();
 if($lastInsertId)
 {
 echo "<script>alert('Order successfull.');</script>";
-//$SQL="UPDATE tblproduct SET Stock = Stock - (SELECT Quantity )"
 }
 else
 {
@@ -96,9 +95,9 @@ foreach($results as $result)
 ?>
 
 <section id="listing_img_slider">
-  <div><img src="admin/img/productimage/<?php echo htmlentities($result->Vimage1);?>" class="img-responsive" alt="image" width="900" height="560"></div>
-  <div><img src="admin/img/productimage/<?php echo htmlentities($result->Vimage2);?>" class="img-responsive" alt="image" width="900" height="560"></div>
-  <div><img src="admin/img/productimage/<?php echo htmlentities($result->Vimage3);?>" class="img-responsive" alt="image" width="900" height="560"></div>
+  <div><img src="admin/img/productimage/<?php echo htmlentities($result->Pimage1);?>" class="img-responsive" alt="image" width="900" height="560"></div>
+  <div><img src="admin/img/productimage/<?php echo htmlentities($result->Pimage2);?>" class="img-responsive" alt="image" width="900" height="560"></div>
+  <div><img src="admin/img/productimage/<?php echo htmlentities($result->Pimage3);?>" class="img-responsive" alt="image" width="900" height="560"></div>
 </section>
 <!--/Listing-Image-Slider-->
 
