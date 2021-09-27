@@ -1,0 +1,14 @@
+List of function:
+Admin upload data,edit and delete
+Admin manage order (confirm or cancel)
+Admin manage feedback (where feedback record in database)
+User login, register,update profile, change password, view data, view order history (complete order without asking anything yet)
+Search with name/ price range
+Not available yet:
+Upload profile picture
+Not complete yet:
+About us and contact us details 
+Admin login:
+at below of every page
+username: seller1 password: 1234
+

@@ -43,7 +43,6 @@ else{
 <?php include('includes/header.php');?>
 
 	<div class="ts-main-content">
-<?php include('includes/leftbar.php');?>
 		<div class="content-wrapper">
 			<div class="container-fluid">
 
@@ -118,17 +117,6 @@ $bookings=$query2->rowCount();
 						</div>
 					</div>
 				</div>
-
-
-
-
-
-
-
-
-
-
-
 			</div>
 		</div>
 	</div>

@@ -15,7 +15,7 @@ else{
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="keywords" content="">
 <meta name="description" content="">
-<title>CarForYou - Responsive Car Dealer HTML5 Template</title>
+<title>History</title>
 <!--Bootstrap -->
 <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css">
 <!--Custome Style -->
@@ -70,12 +70,8 @@ else{
   <div class="container">
     <div class="page-header_wrap">
       <div class="page-heading">
-        <h1>My Booking</h1>
+        <h1>History</h1>
       </div>
-      <ul class="coustom-breadcrumb">
-        <li><a href="#">Home</a></li>
-        <li>My Booking</li>
-      </ul>
     </div>
   </div>
   <!-- Dark Overlay-->
@@ -97,28 +93,18 @@ foreach($results as $result)
 { ?>
 <section class="user_profile inner_pages">
   <div class="container">
-    <div class="user_profile_info gray-bg padding_4x4_40">
-      <div class="upload_user_logo"> <img src="assets/images/dealer-logo.jpg" alt="image">
-      </div>
-
-      <div class="dealer_info">
-        <h5><?php echo htmlentities($result->FullName);?></h5>
-        <p><?php echo htmlentities($result->Address);?><br>
-          <?php echo htmlentities($result->City);?>&nbsp;<?php echo htmlentities($result->Country); }}?></p>
-      </div>
-    </div>
     <div class="row">
       <div class="col-md-3 col-sm-3">
        <?php include('includes/sidebar.php');?>
 
       <div class="col-md-6 col-sm-8">
         <div class="profile_wrap">
-          <h5 class="uppercase underline">My Bookings </h5>
+          <h5 class="uppercase underline">History </h5>
           <div class="my_vehicles_list">
             <ul class="vehicle_listing">
 <?php
 $useremail=$_SESSION['login'];
- $sql = "SELECT tblvehicles.Vimage1 as Vimage1,tblvehicles.VehiclesTitle,tblvehicles.id as vid,tblbrands.BrandName,tblbooking.FromDate,tblbooking.ToDate,tblbooking.message,tblbooking.Status  from tblbooking join tblvehicles on tblbooking.VehicleId=tblvehicles.id join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand where tblbooking.userEmail=:useremail";
+$sql = "SELECT tblproduct.Pimage1 as Pimage1,tblproduct.ProductName,tblproduct.id as pid,tblorder.Quantity,tblorder.status,tblorder.PostingDate from tblorder join tblproduct on tblorder.ProductId=tblproduct.id where tblorder.userEmail=:useremail";
 $query = $dbh -> prepare($sql);
 $query-> bindParam(':useremail', $useremail, PDO::PARAM_STR);
 $query->execute();
@@ -130,30 +116,26 @@ foreach($results as $result)
 {  ?>
 
 <li>
-                <div class="vehicle_img"> <a href="vehical-details.php?vhid=<?php echo htmlentities($result->vid);?>""><img src="admin/img/vehicleimages/<?php echo htmlentities($result->Vimage1);?>" alt="image"></a> </div>
+                <div class="vehicle_img"> <a href="product-details.php?vhid=<?php echo htmlentities($result->pid);?>""><img src="admin/img/productimage/<?php echo htmlentities($result->Pimage1);?>" alt="image"></a> </div>
                 <div class="vehicle_title">
-                  <h6><a href="vehical-details.php?vhid=<?php echo htmlentities($result->vid);?>""> <?php echo htmlentities($result->BrandName);?> , <?php echo htmlentities($result->VehiclesTitle);?></a></h6>
-                  <p><b>From Date:</b> <?php echo htmlentities($result->FromDate);?><br /> <b>To Date:</b> <?php echo htmlentities($result->ToDate);?></p>
+                  <h6><a href="product-details.php?vhid=<?php echo htmlentities($result->pid);?>""> <?php echo htmlentities($result->ProductName);?></a></h6>
+                  <p><b>Order Date:</b> <?php echo htmlentities($result->PostingDate);?><br /> <b>Order quantity:</b> <?php echo htmlentities($result->Quantity);?></p>
                 </div>
-                <?php if($result->Status==1)
+                <?php if($result->status==1)
                 { ?>
-                <div class="vehicle_status"> <a href="#" class="btn outline btn-xs active-btn">Confirmed</a>
+                <div class="product_status"> <a href="#" class="btn outline btn-xs active-btn">Completed</a>
                            <div class="clearfix"></div>
         </div>
 
-              <?php } else if($result->Status==2) { ?>
- <div class="vehicle_status"> <a href="#" class="btn outline btn-xs">Cancelled</a>
+      <?php } else if($result->status==2) { ?>
+ <div class="product_status"> <a href="#" class="btn outline btn-xs">Cancelled</a>
             <div class="clearfix"></div>
         </div>
-
-
-
                 <?php } else { ?>
- <div class="vehicle_status"> <a href="#" class="btn outline btn-xs">Not Confirm yet</a>
+ <div class="vehicle_status"> <a href="#" class="btn outline btn-xs">Pending</a>
             <div class="clearfix"></div>
         </div>
                 <?php } ?>
-       <div style="float: left"><p><b>Message:</b> <?php echo htmlentities($result->message);?> </p></div>
               </li>
               <?php }} ?>
 
@@ -168,6 +150,10 @@ foreach($results as $result)
 <!--/my-vehicles-->
 <?php include('includes/footer.php');?>
 
+<!--Search-Form -->
+<?php include('includes/search.php');?>
+<!--/Search-Form -->
+
 <!-- Scripts -->
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
@@ -181,4 +167,4 @@ foreach($results as $result)
 <script src="assets/js/owl.carousel.min.js"></script>
 </body>
 </html>
-<?php } ?>
+<?php }}} ?>

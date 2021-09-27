@@ -8,6 +8,9 @@
         </div>
         <div class="col-sm-9 col-md-10">
           <div class="header_info">
+            <div class="header_widgets">
+              <!--<div class="login_btn"> <a href="#searchform" class="btn btn-xs uppercase" data-toggle="modal" data-dismiss="modal">Search</a> </div>-->
+            </div>
         </div>
       </div>
     </div>
@@ -40,6 +43,7 @@ foreach($results as $result)
               <ul class="dropdown-menu">
            <?php if($_SESSION['login']){?>
             <li><a href="profile.php">Profile Settings</a></li>
+            <li><a href="order-history.php">Order History</a></li>
             <li><a href="logout.php">Sign Out</a></li>
             <?php } else { ?>
             <li><a href="#loginform"  data-toggle="modal" data-dismiss="modal">Login</a></li>

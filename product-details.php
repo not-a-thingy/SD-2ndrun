@@ -96,8 +96,14 @@ foreach($results as $result)
 
 <section id="listing_img_slider">
   <div><img src="admin/img/productimage/<?php echo htmlentities($result->Pimage1);?>" class="img-responsive" alt="image" width="900" height="560"></div>
+	<?php if($result->Pimage2=="" && $result->Pimage3==""){}
+		else if($result->Pimage2!="" && $result->Pimage3==""){
+  ?>
   <div><img src="admin/img/productimage/<?php echo htmlentities($result->Pimage2);?>" class="img-responsive" alt="image" width="900" height="560"></div>
-  <div><img src="admin/img/productimage/<?php echo htmlentities($result->Pimage3);?>" class="img-responsive" alt="image" width="900" height="560"></div>
+<?php } else {?>
+	<div><img src="admin/img/productimage/<?php echo htmlentities($result->Pimage2);?>" class="img-responsive" alt="image" width="900" height="560"></div>
+	<div><img src="admin/img/productimage/<?php echo htmlentities($result->Pimage3);?>" class="img-responsive" alt="image" width="900" height="560"></div>
+<?php	} ?>
 </section>
 <!--/Listing-Image-Slider-->
 
@@ -149,7 +155,7 @@ foreach($results as $result)
           </div>
           <form method="post">
             <div class="form-group">
-              <input type="text" class="form-control" name="quantity" placeholder="1" required>
+              <input type="text" class="form-control" name="quantity" value="1" placeholder="1" required>
             </div>
             <div class="form-group">
               <label>Currently have : <?php echo htmlentities($result->Stock);?> in stock</label>
@@ -191,8 +197,11 @@ foreach($results as $result)
 
 <!--Register-Form -->
 <?php include('includes/registration.php');?>
-
 <!--/Register-Form -->
+
+<!--Search-Form -->
+<?php include('includes/search.php');?>
+<!--/Search-Form -->
 
 <!--Forgot-password-Form -->
 <?php include('includes/forgotpassword.php');?>

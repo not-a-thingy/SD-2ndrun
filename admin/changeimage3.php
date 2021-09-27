@@ -80,11 +80,7 @@ $msg="Image updated successfully";
 <body>
 	<?php include('includes/header.php');?>
 	<div class="ts-main-content">
-	<?php include('includes/leftbar.php');?>
-		<div class="content-wrapper">
-			<div class="container-fluid">
-
-				<div class="row">
+	<div class="row">
 					<div class="col-md-12">
 
 						<h2 class="page-title">Product Image 3 </h2>
@@ -138,6 +134,7 @@ foreach($results as $result)
 												<div class="col-sm-8 col-sm-offset-4">
 
 													<button class="btn btn-primary" name="update" type="submit">Update</button>
+
 												</div>
 											</div>
 
@@ -146,15 +143,7 @@ foreach($results as $result)
 									</div>
 								</div>
 							</div>
-
 						</div>
-
-
-
-					</div>
-				</div>
-
-
 			</div>
 		</div>
 	</div>

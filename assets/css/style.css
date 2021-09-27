@@ -1748,16 +1748,16 @@ nav.navbar {
 	3.11. Login / Register / Forgot password
 -------------------------------------------------------*/
 
-.login_wrap, .signup_wrap {
+.login_wrap, .signup_wrap, .search_wrap {
   display: table;
   position: relative;
   width: 100%;
 }
-#loginform .modal-footer, #signupform .modal-footer, #forgotpassword .modal-footer {
+#loginform .modal-footer, #searchform .modal-footer, #signupform .modal-footer, #forgotpassword .modal-footer {
 	text-align:center;
 	border-top:0px;
 }
-#loginform .modal-footer p, #signupform .modal-footer p, #forgotpassword .modal-footer p {
+#loginform .modal-footer p, #searchform .modal-footer p, #signupform .modal-footer p, #forgotpassword .modal-footer p {
 	margin:0px;
 	font-size:14px;
 	color:#111;

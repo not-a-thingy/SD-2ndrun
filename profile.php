@@ -11,14 +11,18 @@ if(isset($_POST['updateprofile']))
   {
 $name=$_POST['fullname'];
 $mobileno=$_POST['mobilenumber'];
-$dob=$_POST['dob'];
+$adress=$_POST['address'];
 $email=$_SESSION['login'];
-$sql="update tblusers set FullName=:name,ContactNo=:mobileno,dob=:dob where EmailId=:email";
+$pfp=$_FILES["profile"]["name"];
+//$id=intval($_GET['imgid']);
+//move_uploaded_file($_FILES["profile"]["tmp_name"],"admin/img/userimage/".$_FILES["profile"]["name"]);
+$sql="UPDATE tblusers set FullName=:name,ContactNo=:mobileno,address=:adress where EmailId=:email";
 $query = $dbh->prepare($sql);
 $query->bindParam(':name',$name,PDO::PARAM_STR);
 $query->bindParam(':mobileno',$mobileno,PDO::PARAM_STR);
-$query->bindParam(':dob',$dob,PDO::PARAM_STR);
+$query->bindParam(':adress',$adress,PDO::PARAM_STR);
 $query->bindParam(':email',$email,PDO::PARAM_STR);
+//$query->bindParam(':pfp',$pfp,PDO::PARAM_STR);
 $query->execute();
 $msg="Profile Updated Successfully";
 }
@@ -105,10 +109,11 @@ $msg="Profile Updated Successfully";
 
 
 <?php
-$username=$_SESSION['login'];
-$sql = "SELECT * from tblusers where Fullname=:username";
+//$id=intval($_GET['imgid']);
+$useremail=$_SESSION['login'];
+$sql = "SELECT * from tblusers where EmailId=:useremail";
 $query = $dbh -> prepare($sql);
-$query -> bindParam(':username',$username, PDO::PARAM_STR);
+$query -> bindParam(':useremail',$useremail, PDO::PARAM_STR);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
 $cnt=1;
@@ -119,13 +124,8 @@ foreach($results as $result)
 <section class="user_profile inner_pages">
   <div class="container">
     <div class="user_profile_info gray-bg padding_4x4_40">
-      <div class="upload_user_logo"> <img src="assets/images/Logo.jpeg" alt="image">
-      </div>
-
-      <div class="dealer_info">
-        <h5><?php echo htmlentities($result->FullName);?></h5>
-        <p><?php echo htmlentities($result->Address);?><br>
-          <?php echo htmlentities($result->City);?>&nbsp;<?php echo htmlentities($result->Country);?></p>
+      <div class="upload_user_logo">
+          <img src="assets/images/Logo.jpeg" alt="image" width="250" height="180" style="border:solid 1px #000">
       </div>
     </div>
 
@@ -150,7 +150,7 @@ foreach($results as $result)
             <?php } ?>
             <div class="form-group">
               <label class="control-label">Full Name</label>
-              <input class="form-control white_bg" name="fullname" value="<?php echo htmlentities($result->FullName);?>" id="fullname" type="text"  required readonly>
+              <input class="form-control white_bg" name="fullname" value="<?php echo htmlentities($result->FullName);?>" id="fullname" type="text"  required>
             </div>
             <div class="form-group">
               <label class="control-label">Email Address</label>
@@ -161,8 +161,8 @@ foreach($results as $result)
               <input class="form-control white_bg" name="mobilenumber" value="<?php echo htmlentities($result->ContactNo);?>" id="phone-number" type="text" required>
             </div>
             <div class="form-group">
-              <label class="control-label">Date of Birth&nbsp;(dd/mm/yyyy)</label>
-              <input class="form-control white_bg" value="<?php echo htmlentities($result->dob);?>" name="dob" placeholder="dd/mm/yyyy" id="birth-date" type="text" >
+              <label class="control-label">Your Address</label>
+              <textarea class="form-control white_bg" name="address" rows="4" ><?php echo htmlentities($result->address);?></textarea>
             </div>
             <?php }} ?>
 
@@ -191,8 +191,11 @@ foreach($results as $result)
 
 <!--Register-Form -->
 <?php include('includes/registration.php');?>
-
 <!--/Register-Form -->
+
+<!--Search-Form -->
+<?php include('includes/search.php');?>
+<!--/Search-Form -->
 
 <!--Forgot-password-Form -->
 <?php include('includes/forgotpassword.php');?>

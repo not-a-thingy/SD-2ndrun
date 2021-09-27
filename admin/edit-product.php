@@ -90,11 +90,9 @@ $msg="Data updated successfully";
 <body>
 	<?php include('includes/header.php');?>
 	<div class="ts-main-content">
-	<?php include('includes/leftbar.php');?>
 		<div class="content-wrapper">
 			<div class="container-fluid">
-
-				<div class="row">
+		<div class="row">
 					<div class="col-md-12">
 
 						<h2 class="page-title">Edit Product Details</h2>
@@ -197,16 +195,10 @@ Image 3<img src="img/productimage/<?php echo htmlentities($result->Pimage3);?>" 
 										</form>
 									</div>
 								</div>
+									</div>
+								</div>
 							</div>
 						</div>
-
-
-
-					</div>
-				</div>
-
-
-
 			</div>
 		</div>
 	</div>

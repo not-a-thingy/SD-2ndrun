@@ -27,6 +27,15 @@ error_reporting(0);
 <!--FontAwesome Font Style -->
 <link href="assets/css/font-awesome.min.css" rel="stylesheet">
 
+<!-- SWITCHER -->
+		<link rel="stylesheet" id="switcher-css" type="text/css" href="assets/switcher/css/switcher.css" media="all" />
+		<link rel="alternate stylesheet" type="text/css" href="assets/switcher/css/red.css" title="red" media="all" data-default-color="true" />
+		<link rel="alternate stylesheet" type="text/css" href="assets/switcher/css/orange.css" title="orange" media="all" />
+		<link rel="alternate stylesheet" type="text/css" href="assets/switcher/css/blue.css" title="blue" media="all" />
+		<link rel="alternate stylesheet" type="text/css" href="assets/switcher/css/pink.css" title="pink" media="all" />
+		<link rel="alternate stylesheet" type="text/css" href="assets/switcher/css/green.css" title="green" media="all" />
+		<link rel="alternate stylesheet" type="text/css" href="assets/switcher/css/purple.css" title="purple" media="all" />
+
 <!-- Fav and touch icons -->
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/images/favicon-icon/apple-touch-icon-144-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/images/favicon-icon/apple-touch-icon-114-precomposed.html">
@@ -36,6 +45,10 @@ error_reporting(0);
 <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
 </head>
 <body>
+
+<!-- Start Switcher -->
+<?php include('includes/colorswitcher.php');?>
+<!-- /Switcher -->
 
 <!--Header-->
 <?php include('includes/header.php');?>
@@ -64,10 +77,15 @@ error_reporting(0);
           <div class="sorting-count">
 <?php
 //Query for Listing count
-$sql = "SELECT id from tblproduct";
-$query = $dbh -> prepare($sql);
-$query->bindParam(':pid',$pid, PDO::PARAM_STR);
-$query->execute();
+$name=$_POST['name'];
+$min=$_POST['min'];
+$max=$_POST['max'];
+$sql ="SELECT id FROM tblproduct WHERE tblproduct.ProductName LIKE '%{$name}%' AND tblproduct.Price>='{$min}' AND tblproduct.Price<='{$max}'";
+$query= $dbh -> prepare($sql);
+$query-> bindParam(':name', $name, PDO::PARAM_STR);
+$query-> bindParam(':min', $min, PDO::PARAM_STR);
+$query-> bindParam(':max', $max, PDO::PARAM_STR);
+$query-> execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
 $cnt=$query->rowCount();
 ?>
@@ -75,30 +93,34 @@ $cnt=$query->rowCount();
 </div>
 </div>
 
-<?php $sql = "SELECT * from tblproduct";
-$query = $dbh -> prepare($sql);
-$query->execute();
+<?php
+$sql ="SELECT tblproduct.* FROM tblproduct WHERE tblproduct.ProductName LIKE '%{$name}%' AND tblproduct.Price>='{$min}' AND tblproduct.Price<='{$max}'";
+$query= $dbh -> prepare($sql);
+$query-> bindParam(':name', $name, PDO::PARAM_STR);
+$query-> bindParam(':min', $min, PDO::PARAM_STR);
+$query-> bindParam(':max', $max, PDO::PARAM_STR);
+$query-> execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
 $cnt=1;
 if($query->rowCount() > 0)
 {
 foreach($results as $result)
 {  ?>
-        <div class="product-listing-m gray-bg">
-          <div class="product-listing-img"><img src="admin/img/productimage/<?php echo htmlentities($result->Pimage1);?>" class="img-responsive" alt="Image" /> </a>
-          </div>
-          <div class="product-listing-content">
-            <h5><a href="product-details.php?pid=<?php echo htmlentities($result->id);?>"><?php echo htmlentities($result->ProductName);?></a></h5>
-            <p class="list-price">RM <?php echo htmlentities($result->Price);?></p>
-            <ul>
-              <li><?php echo htmlentities($result->Stock);?> left</li>
-            </ul>
-            <a href="product-details.php?pid=<?php echo htmlentities($result->id);?>" class="btn">View Details <span class="angle_arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
-          </div>
-        </div>
+	<div class="product-listing-m gray-bg">
+		<div class="product-listing-img"><img src="admin/img/productimage/<?php echo htmlentities($result->Pimage1);?>" class="img-responsive" alt="Image" /> </a>
+		</div>
+		<div class="product-listing-content">
+			<h5><a href="product-details.php?pid=<?php echo htmlentities($result->id);?>"><?php echo htmlentities($result->ProductName);?></a></h5>
+			<p class="list-price">RM <?php echo htmlentities($result->Price);?></p>
+			<ul>
+				<li><?php echo htmlentities($result->Stock);?> left</li>
+			</ul>
+			<a href="product-details.php?pid=<?php echo htmlentities($result->id);?>" class="btn">View Details <span class="angle_arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
+		</div>
+	</div>
       <?php }} ?>
          </div>
-         <!--Side-Bar-->
+				 <!--Side-Bar-->
 				 <aside class="col-md-3 col-md-pull-9">
 				 	<div class="sidebar_widget">
 				 		<div class="widget_heading">
@@ -110,40 +132,40 @@ foreach($results as $result)
 				 				<p>By name</p>
 				 				<input type="text" class="form-control" name="name" placeholder="Enter product name">
 				 			</div>
-              <p>By price range <br>from</p>
-              <div class="form-group select">
-                <select class="form-control" name="min">
-                  <option value=0>RM 0</option>
-                  <option value=5>RM 5</option>
-                  <option value=10>RM 10</option>
-                  <option value=15>RM 15</option>
-                  <option value=20>RM 20</option>
-                  <option value=25>RM 25</option>
-                  <option value=30>RM 30</option>
-                  <option value=35>RM 35</option>
-                </select>
-              </div>
-                <p>to</p>
-              <div class="form-group select">
-                <select class="form-control" name="max">
-                  <option value=35>RM 35</option>
-                  <option value=30>RM 30</option>
-                  <option value=25>RM 25</option>
-                  <option value=20>RM 20</option>
-                  <option value=15>RM 15</option>
-                  <option value=10>RM 10</option>
-                  <option value=5>RM 5</option>
-                  <option value=0>RM 0</option>
-                </select>
-              </div>
+							<p>By price range <br>from</p>
+							<div class="form-group select">
+								<select class="form-control" name="min">
+									<option value=0>RM 0</option>
+									<option value=5>RM 5</option>
+									<option value=10>RM 10</option>
+									<option value=15>RM 15</option>
+									<option value=20>RM 20</option>
+									<option value=25>RM 25</option>
+									<option value=30>RM 30</option>
+									<option value=35>RM 35</option>
+								</select>
+							</div>
+								<p>to</p>
+							<div class="form-group select">
+								<select class="form-control" name="max">
+									<option value=35>RM 35</option>
+									<option value=30>RM 30</option>
+									<option value=25>RM 25</option>
+									<option value=20>RM 20</option>
+									<option value=15>RM 15</option>
+									<option value=10>RM 10</option>
+									<option value=5>RM 5</option>
+									<option value=0>RM 0</option>
+								</select>
+							</div>
 				 				<div class="form-group">
 				 					<button type="submit" class="btn btn-block"><i class="fa fa-search" aria-hidden="true"></i> Search Product</button>
 				 				</div>
-				 			</form>
 				 		</div>
 				 	</div>
 				 </aside>
 				 <!--/Side-Bar-->
+
     </div>
   </div>
 </section>

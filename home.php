@@ -67,7 +67,7 @@ error_reporting(0);
       <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="resentnewcar">
 
-<?php $sql = "SELECT tblvehicles.VehiclesTitle,tblbrands.BrandName,tblvehicles.PricePerDay,tblvehicles.FuelType,tblvehicles.ModelYear,tblvehicles.id,tblvehicles.SeatingCapacity,tblvehicles.VehiclesOverview,tblvehicles.Vimage1 from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand";
+<?php $sql = "SELECT * FROM tblproduct";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -80,19 +80,17 @@ foreach($results as $result)
 
 <div class="col-list-3">
 <div class="recent-car-list">
-<div class="car-info-box"> <a href="vehical-details.php?vhid=<?php echo htmlentities($result->id);?>"><img src="admin/img/vehicleimages/<?php echo htmlentities($result->Vimage1);?>" class="img-responsive" alt="image"></a>
+<div class="car-info-box"> <a href="product-details.php?pid=<?php echo htmlentities($result->id);?>"><img src="admin/img/productimage/<?php echo htmlentities($result->Pimage1);?>" class="img-responsive" alt="image"></a>
 <ul>
-<li><i class="fa fa-car" aria-hidden="true"></i><?php echo htmlentities($result->FuelType);?></li>
-<li><i class="fa fa-calendar" aria-hidden="true"></i><?php echo htmlentities($result->ModelYear);?> Model</li>
-<li><i class="fa fa-user" aria-hidden="true"></i><?php echo htmlentities($result->SeatingCapacity);?> seats</li>
+<li><?php echo htmlentities($result->Stock);?> Left</li>
 </ul>
 </div>
 <div class="car-title-m">
-<h6><a href="vehical-details.php?vhid=<?php echo htmlentities($result->id);?>"><?php echo htmlentities($result->BrandName);?> , <?php echo htmlentities($result->VehiclesTitle);?></a></h6>
-<span class="price">$<?php echo htmlentities($result->PricePerDay);?> /Day</span>
+<h6><a href="product-details.php?pid=<?php echo htmlentities($result->id);?>"><?php echo htmlentities($result->ProductName);?></a></h6>
+<span class="price">RM<?php echo htmlentities($result->Price);?>/Unit</span>
 </div>
 <div class="inventory_info_m">
-<p><?php echo substr($result->VehiclesOverview,0,70);?></p>
+<p><?php echo substr($result->ProductsOverview,0,70);?></p>
 </div>
 </div>
 </div>
@@ -116,9 +114,12 @@ foreach($results as $result)
 <?php include('includes/login.php');?>
 <!--/Login-Form -->
 
+<!--Search-Form -->
+<?php include('includes/search.php');?>
+<!--/Search-Form -->
+
 <!--Register-Form -->
 <?php include('includes/registration.php');?>
-
 <!--/Register-Form -->
 
 <!--Forgot-password-Form -->

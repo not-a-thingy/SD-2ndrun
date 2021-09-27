@@ -3,11 +3,11 @@ session_start();
 error_reporting(0);
 include('includes/config.php');
 if(strlen($_SESSION['alogin'])==0)
-	{	
+	{
 header('location:index.php');
 }
 else{
-// Code for change password	
+// Code for change password
 if(isset($_POST['submit']))
 	{
 $password=md5($_POST['password']);
@@ -29,7 +29,7 @@ $chngpwd1->execute();
 $msg="Your Password succesfully changed";
 }
 else {
-$error="Your current password is not valid.";	
+$error="Your current password is not valid.";
 }
 }
 ?>
@@ -44,8 +44,8 @@ $error="Your current password is not valid.";
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<meta name="theme-color" content="#3e454c">
-	
-	<title>Car Rental Portal | Admin Change Password</title>
+
+	<title>Mask Kau Portal | Admin Management</title>
 
 	<!-- Font awesome -->
 	<link rel="stylesheet" href="css/font-awesome.min.css">
@@ -100,13 +100,9 @@ return true;
 <body>
 	<?php include('includes/header.php');?>
 	<div class="ts-main-content">
-	<?php include('includes/leftbar.php');?>
-		<div class="content-wrapper">
-			<div class="container-fluid">
-
 				<div class="row">
 					<div class="col-md-12">
-					
+
 						<h2 class="page-title">Change Password</h2>
 
 						<div class="row">
@@ -115,9 +111,9 @@ return true;
 									<div class="panel-heading">Form fields</div>
 									<div class="panel-body">
 										<form method="post" name="chngpwd" class="form-horizontal" onSubmit="return valid();">
-										
-											
-  	        	  <?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } 
+
+
+  	        	  <?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php }
 				else if($msg){?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
 											<div class="form-group">
 												<label class="col-sm-4 control-label">Current Password</label>
@@ -126,7 +122,7 @@ return true;
 												</div>
 											</div>
 											<div class="hr-dashed"></div>
-											
+
 											<div class="form-group">
 												<label class="col-sm-4 control-label">New Password</label>
 												<div class="col-sm-8">
@@ -142,30 +138,20 @@ return true;
 												</div>
 											</div>
 											<div class="hr-dashed"></div>
-										
-								
-											
+
+
+
 											<div class="form-group">
 												<div class="col-sm-8 col-sm-offset-4">
-								
+
 													<button class="btn btn-primary" name="submit" type="submit">Save changes</button>
 												</div>
 											</div>
-
 										</form>
-
 									</div>
 								</div>
 							</div>
-							
 						</div>
-						
-					
-
-					</div>
-				</div>
-				
-			
 			</div>
 		</div>
 	</div>

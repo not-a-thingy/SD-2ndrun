@@ -17,7 +17,7 @@ $query -> bindParam(':status',$status, PDO::PARAM_STR);
 $query-> bindParam(':eid',$eid, PDO::PARAM_STR);
 $query -> execute();
 
-$msg="Testimonial Successfully Inacrive";
+$msg="Marked as read";
 }
 
 
@@ -78,11 +78,7 @@ $msg="Testimonial Successfully Inacrive";
 	<?php include('includes/header.php');?>
 
 	<div class="ts-main-content">
-		<?php include('includes/leftbar.php');?>
-		<div class="content-wrapper">
-			<div class="container-fluid">
-
-				<div class="row">
+		<div class="row">
 					<div class="col-md-12">
 
 						<h2 class="page-title">Manage Feedback</h2>
@@ -140,7 +136,7 @@ foreach($results as $result)
 	?><td>Read</td>
 <?php } else {?>
 
-<td><a href="manage-conactusquery.php?eid=<?php echo htmlentities($result->id);?>" onclick="return confirm('Do you really want to read')" >Pending</a>
+<td><a href="manage-contactusquery.php?eid=<?php echo htmlentities($result->id);?>" onclick="return confirm('Confirm Respond?')" >Pending</a>
 </td>
 <?php } ?>
 										</tr>
@@ -148,14 +144,6 @@ foreach($results as $result)
 
 									</tbody>
 								</table>
-
-
-
-							</div>
-						</div>
-
-
-
 					</div>
 				</div>
 

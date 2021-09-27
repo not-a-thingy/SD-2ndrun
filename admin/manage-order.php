@@ -25,7 +25,6 @@ if(isset($_REQUEST['aeid']))
 	{
 $aeid=intval($_GET['aeid']);
 $status=1;
-
 $sql = "UPDATE tblorder SET status=:status WHERE  id=:aeid";
 $query = $dbh->prepare($sql);
 $query -> bindParam(':status',$status, PDO::PARAM_STR);
@@ -92,9 +91,6 @@ $msg="Order Successfully Confirmed";
 	<?php include('includes/header.php');?>
 
 	<div class="ts-main-content">
-		<?php include('includes/leftbar.php');?>
-		<div class="content-wrapper">
-			<div class="container-fluid">
 
 				<div class="row">
 					<div class="col-md-12">
@@ -132,7 +128,7 @@ $msg="Order Successfully Confirmed";
 									</tfoot>
 									<tbody>
 
-									<?php $sql = "SELECT tblorder.userEmail,tblproduct.ProductName,tblorder.Quantity,tblorder.ProductId as pid,tblorder.status,tblorder.PostingDate,tblorder.id  from tblorder join tblproduct on tblproduct.id=tblorder.ProductId ";
+									<?php $sql = "SELECT tblorder.userEmail,tblproduct.ProductName,tblorder.Quantity,tblorder.ProductId as pid,tblorder.status,tblorder.PostingDate,tblorder.id,tblproduct.Stock  from tblorder join tblproduct on tblproduct.id=tblorder.ProductId ";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -149,19 +145,20 @@ foreach($results as $result)
 											<td><?php
 if($result->status==0)
 {
-echo htmlentities('Not Confirmed yet');
+echo htmlentities('Waiting Response');
 } else if ($result->status==1) {
-echo htmlentities('Confirmed');
+echo htmlentities('Completed');
 }
  else{
  	echo htmlentities('Cancelled');
  }
 										?></td>
 											<td><?php echo htmlentities($result->PostingDate);?></td>
-										<td><a href="manage-bookings.php?aeid=<?php echo htmlentities($result->id);?>" onclick="return confirm('Do you really want to Confirm this booking')"> Confirm</a> /
+										<td><?php if($result->status==0) {?>
+											<a href="manage-order.php?aeid=<?php echo htmlentities($result->id);?>" onclick="return confirm('Do you really want to Confirm this order')"> Confirm</a> /
+											 <a href="manage-order.php?eid=<?php echo htmlentities($result->id);?>" onclick="return confirm('Do you really want to Cancel this order')"> Cancel</a>
+										<?php }?>
 
-
-<a href="manage-bookings.php?eid=<?php echo htmlentities($result->id);?>" onclick="return confirm('Do you really want to Cancel this Booking')"> Cancel</a>
 </td>
 
 										</tr>
@@ -169,19 +166,10 @@ echo htmlentities('Confirmed');
 
 									</tbody>
 								</table>
-
-
-
 							</div>
 						</div>
-
-
-
 					</div>
 				</div>
-
-			</div>
-		</div>
 	</div>
 
 	<!-- Loading Scripts -->

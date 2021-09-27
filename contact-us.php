@@ -178,6 +178,10 @@ $error="Something went wrong. Please try again";
 <?php include('includes/login.php');?>
 <!--/Login-Form -->
 
+<!--Search-Form -->
+<?php include('includes/search.php');?>
+<!--/Search-Form -->
+
 <!--Register-Form -->
 <?php include('includes/registration.php');?>
 

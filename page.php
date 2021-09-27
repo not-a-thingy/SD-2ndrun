@@ -93,8 +93,11 @@ include('includes/config.php');
 
 <!--Register-Form -->
 <?php include('includes/registration.php');?>
-
 <!--/Register-Form -->
+
+<!--Search-Form -->
+<?php include('includes/search.php');?>
+<!--/Search-Form -->
 
 <!--Forgot-password-Form -->
 <?php include('includes/forgotpassword.php');?>

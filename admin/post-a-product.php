@@ -99,9 +99,6 @@ $error="Something went wrong. Please try again";
 <body>
 	<?php include('includes/header.php');?>
 	<div class="ts-main-content">
-	<?php include('includes/leftbar.php');?>
-		<div class="content-wrapper">
-			<div class="container-fluid">
 
 				<div class="row">
 					<div class="col-md-12">
@@ -155,10 +152,10 @@ $error="Something went wrong. Please try again";
 Image 1 <span style="color:red">*</span><input type="file" name="img1" required>
 </div>
 <div class="col-sm-4">
-Image 2<span style="color:red">*</span><input type="file" name="img2" required>
+Image 2<input type="file" name="img2">
 </div>
 <div class="col-sm-4">
-Image 3<span style="color:red">*</span><input type="file" name="img3" required>
+Image 3<input type="file" name="img3">
 </div>
 </div>
 
@@ -185,11 +182,6 @@ Image 3<span style="color:red">*</span><input type="file" name="img3" required>
 									</div>
 								</div>
 							</div>
-						</div>
-
-
-
-					</div>
 				</div>
 
 

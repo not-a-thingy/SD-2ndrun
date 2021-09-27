@@ -44,7 +44,6 @@ else{
     padding: 10px;
     margin: 0 0 20px 0;
     background: #fff;
-    border-left: 4px solid #dd3d36;
     -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
     box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
 }
@@ -52,7 +51,6 @@ else{
     padding: 10px;
     margin: 0 0 20px 0;
     background: #fff;
-    border-left: 4px solid #5cb85c;
     -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
     box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
 }
@@ -64,10 +62,6 @@ else{
 	<?php include('includes/header.php');?>
 
 	<div class="ts-main-content">
-		<?php include('includes/leftbar.php');?>
-		<div class="content-wrapper">
-			<div class="container-fluid">
-
 				<div class="row">
 					<div class="col-md-12">
 
@@ -121,17 +115,8 @@ foreach($results as $result)
 
 									</tbody>
 								</table>
-
-
-
 							</div>
 						</div>
-
-
-
-					</div>
-				</div>
-
 			</div>
 		</div>
 	</div>

@@ -1,17 +1,17 @@
 <?php
 if(isset($_POST['login']))
 {
-$name=$_POST['username'];
+$email=$_POST['email'];
 $password=md5($_POST['password']);
-$sql ="SELECT FullName,Password FROM tblusers WHERE Fullname=:username and Password=:password";
+$sql ="SELECT EmailId,Password,FullName FROM tblusers WHERE EmailId=:email and Password=:password";
 $query= $dbh -> prepare($sql);
-$query-> bindParam(':username', $name, PDO::PARAM_STR);
+$query-> bindParam(':email', $email, PDO::PARAM_STR);
 $query-> bindParam(':password', $password, PDO::PARAM_STR);
 $query-> execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
 if($query->rowCount() > 0)
 {
-$_SESSION['login']=$_POST['username'];
+$_SESSION['login']=$_POST['email'];
 $_SESSION['fname']=$results->FullName;
 $currentpage=$_SERVER['REQUEST_URI'];
 echo "<script type='text/javascript'> document.location = '$currentpage'; </script>";
@@ -38,7 +38,7 @@ echo "<script type='text/javascript'> document.location = '$currentpage'; </scri
             <div class="col-md-12 col-sm-6">
               <form method="post">
                 <div class="form-group">
-                  <input type="text" class="form-control" name="username" placeholder="User Name*">
+                  <input type="email" class="form-control" name="email" placeholder="Email address*">
                 </div>
                 <div class="form-group">
                   <input type="password" class="form-control" name="password" placeholder="Password*">

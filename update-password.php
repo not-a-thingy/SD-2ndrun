@@ -4,7 +4,7 @@ session_start();
 error_reporting(0);
 include('includes/config.php');
 if(strlen($_SESSION['login'])==0)
-  { 
+  {
 header('location:index.php');
 }
 else{
@@ -29,7 +29,7 @@ $chngpwd1->execute();
 $msg="Your Password succesfully changed";
 }
 else {
-$error="Your current password is wrong";  
+$error="Your current password is wrong";
 }
 }
 
@@ -42,7 +42,7 @@ $error="Your current password is wrong";
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="keywords" content="">
 <meta name="description" content="">
-<title>CarForYou - Responsive Car Dealer HTML5 Template</title>
+<title>User Profile</title>
 <!--Bootstrap -->
 <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css">
 <!--Custome Style -->
@@ -65,7 +65,7 @@ $error="Your current password is wrong";
 		<link rel="alternate stylesheet" type="text/css" href="assets/switcher/css/pink.css" title="pink" media="all" />
 		<link rel="alternate stylesheet" type="text/css" href="assets/switcher/css/green.css" title="green" media="all" />
 		<link rel="alternate stylesheet" type="text/css" href="assets/switcher/css/purple.css" title="purple" media="all" />
-        
+
 <!-- Fav and touch icons -->
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/images/favicon-icon/apple-touch-icon-144-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/images/favicon-icon/apple-touch-icon-114-precomposed.html">
@@ -109,11 +109,11 @@ return true;
 
 <!-- Start Switcher -->
 <?php include('includes/colorswitcher.php');?>
-<!-- /Switcher -->  
-        
+<!-- /Switcher -->
+
 <!--Header-->
 <?php include('includes/header.php');?>
-<!-- /Header --> 
+<!-- /Header -->
 <!--Page Header-->
 <section class="page-header profile_page">
   <div class="container">
@@ -121,18 +121,14 @@ return true;
       <div class="page-heading">
         <h1>Update Password</h1>
       </div>
-      <ul class="coustom-breadcrumb">
-        <li><a href="#">Home</a></li>
-        <li>Update Password</li>
-      </ul>
     </div>
   </div>
   <!-- Dark Overlay-->
   <div class="dark-overlay"></div>
 </section>
-<!-- /Page Header--> 
+<!-- /Page Header-->
 
-<?php 
+<?php
 $useremail=$_SESSION['login'];
 $sql = "SELECT * from tblusers where EmailId=:useremail";
 $query = $dbh -> prepare($sql);
@@ -147,13 +143,13 @@ foreach($results as $result)
 <section class="user_profile inner_pages">
   <div class="container">
     <div class="user_profile_info gray-bg padding_4x4_40">
-      <div class="upload_user_logo"> <img src="assets/images/dealer-logo.jpg" alt="image">
+      <div class="upload_user_logo">
+        <img src="assets/images/Logo.jpeg" alt="image" width="250" height="180" style="border:solid 1px #000">
       </div>
 
       <div class="dealer_info">
         <h5><?php echo htmlentities($result->FullName);?></h5>
         <p><?php echo htmlentities($result->Address);?><br>
-          <?php echo htmlentities($result->City);?>&nbsp;<?php echo htmlentities($result->Country);}}?></p>
       </div>
     </div>
     <div class="row">
@@ -162,11 +158,11 @@ foreach($results as $result)
       <div class="col-md-6 col-sm-8">
         <div class="profile_wrap">
 <form name="chngpwd" method="post" onSubmit="return valid();">
-        
+
             <div class="gray-bg field-title">
               <h6>Update password</h6>
             </div>
-             <?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } 
+             <?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php }
         else if($msg){?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
             <div class="form-group">
               <label class="control-label">Current Password</label>
@@ -181,7 +177,7 @@ foreach($results as $result)
               <label class="control-label">Confirm Password</label>
               <input class="form-control white_bg" id="confirmpassword" type="password" name="confirmpassword"  required>
             </div>
-          
+
             <div class="form-group">
                <input type="submit" value="Update" name="update" id="submit" class="btn btn-block">
             </div>
@@ -191,38 +187,40 @@ foreach($results as $result)
     </div>
   </div>
 </section>
-<!--/Profile-setting--> 
+<!--/Profile-setting-->
 
 <<!--Footer -->
 <?php include('includes/footer.php');?>
-<!-- /Footer--> 
+<!-- /Footer-->
 
 <!--Back to top-->
 <div id="back-top" class="back-top"> <a href="#top"><i class="fa fa-angle-up" aria-hidden="true"></i> </a> </div>
-<!--/Back to top--> 
+<!--/Back to top-->
 
 <!--Login-Form -->
 <?php include('includes/login.php');?>
-<!--/Login-Form --> 
+<!--/Login-Form -->
 
 <!--Register-Form -->
 <?php include('includes/registration.php');?>
+<!--/Register-Form -->
 
-<!--/Register-Form --> 
+<!--Search-Form -->
+<?php include('includes/search.php');?>
+<!--/Search-Form -->
 
-
-<!-- Scripts --> 
+<!-- Scripts -->
 <script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script> 
-<script src="assets/js/interface.js"></script> 
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/interface.js"></script>
 <!--Switcher-->
 <script src="assets/switcher/js/switcher.js"></script>
-<!--bootstrap-slider-JS--> 
-<script src="assets/js/bootstrap-slider.min.js"></script> 
-<!--Slider-JS--> 
-<script src="assets/js/slick.min.js"></script> 
+<!--bootstrap-slider-JS-->
+<script src="assets/js/bootstrap-slider.min.js"></script>
+<!--Slider-JS-->
+<script src="assets/js/slick.min.js"></script>
 <script src="assets/js/owl.carousel.min.js"></script>
 
 </body>
 </html>
-<?php } ?>
+<?php }}} ?>
